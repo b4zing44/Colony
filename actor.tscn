@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2yosssl78kx2"]
+
+[ext_resource type="Script" path="res://actor.gd" id="1_o1jd1"]
+[ext_resource type="Texture2D" uid="uid://ch7aq6jxahcjf" path="res://gfx/actor.png" id="1_st3ya"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_60qng"]
+
+[node name="Actor" type="CharacterBody2D"]
+input_pickable = true
+script = ExtResource("1_o1jd1")
+
+[node name="SpriteBody" type="Sprite2D" parent="."]
+texture = ExtResource("1_st3ya")
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_60qng")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

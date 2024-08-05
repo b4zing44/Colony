@@ -3,7 +3,7 @@ class_name StateBase
 
 @export var main_scene: Node
 
-func enter_state():
+func enter_state(param_object: Variant):
 	pass
 
 

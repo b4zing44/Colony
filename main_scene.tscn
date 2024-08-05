@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7d12f1nhcr5y"]
+[gd_scene load_steps=9 format=3 uid="uid://c7d12f1nhcr5y"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_sggmg"]
 [ext_resource type="PackedScene" uid="uid://c7ahfho5d4m5n" path="res://main_map.tscn" id="1_tvjv4"]
 [ext_resource type="PackedScene" uid="uid://c2yosssl78kx2" path="res://actor.tscn" id="2_va488"]
 [ext_resource type="Texture2D" uid="uid://bgrh2fia1qmdl" path="res://gfx/selection.png" id="4_paufj"]
 [ext_resource type="Script" path="res://states/StateIdle.gd" id="5_dxm5f"]
+[ext_resource type="Script" path="res://states/StateSelection.gd" id="6_2gycq"]
 [ext_resource type="PackedScene" uid="uid://ba6x7r5igu5up" path="res://hud.tscn" id="6_u7v3m"]
+[ext_resource type="Script" path="res://states/StateSelected.gd" id="7_7i4qs"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_sggmg")
@@ -38,6 +40,14 @@ patch_margin_bottom = 6
 unique_name_in_owner = true
 script = ExtResource("5_dxm5f")
 main_scene = NodePath("../..")
+
+[node name="StateSelection" type="Node2D" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("6_2gycq")
+
+[node name="StateSelected" type="Node2D" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("7_7i4qs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

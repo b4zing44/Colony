@@ -25,14 +25,15 @@ unique_name_in_owner = true
 position = Vector2(467, 311)
 
 [node name="NP_Selection" type="NinePatchRect" parent="."]
-visible = false
-offset_right = 97.0
-offset_bottom = 71.0
+unique_name_in_owner = true
+offset_right = 100.0
+offset_bottom = 100.0
 texture = ExtResource("4_paufj")
-patch_margin_left = 5
-patch_margin_top = 6
-patch_margin_right = 5
-patch_margin_bottom = 6
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="States" type="Node2D" parent="."]
 
@@ -41,13 +42,15 @@ unique_name_in_owner = true
 script = ExtResource("5_dxm5f")
 main_scene = NodePath("../..")
 
-[node name="StateSelection" type="Node2D" parent="States"]
+[node name="StateSelection" type="Node2D" parent="States" node_paths=PackedStringArray("main_scene")]
 unique_name_in_owner = true
 script = ExtResource("6_2gycq")
+main_scene = NodePath("../..")
 
-[node name="StateSelected" type="Node2D" parent="States"]
+[node name="StateSelected" type="Node2D" parent="States" node_paths=PackedStringArray("main_scene")]
 unique_name_in_owner = true
 script = ExtResource("7_7i4qs")
+main_scene = NodePath("../..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

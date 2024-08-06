@@ -6,6 +6,8 @@ extends Node2D
 
 @onready var hud = %HUD
 @onready var camera = %Camera
+@onready var np_selection = %NP_Selection
+
 
 @onready var states: Dictionary = {
 	"StateIdle": %StateIdle,
@@ -18,10 +20,15 @@ var current_state: StateBase = null
 
 var is_dragging_map: bool = false
 
+var selection_started: bool = false
 var start_selection: Vector2 = Vector2.ZERO
 var rect_selection: Rect2 = Rect2()
+var current_actors_selection = []
 
 func _ready():
+	# Visibility
+	np_selection.visible = false
+	
 	change_state("StateIdle")
 
 
@@ -59,3 +66,34 @@ func check_for_actor(pos: Vector2):
 		if rect.has_point(world_position):
 			return actor
 	return null
+	
+	
+func check_for_actors(rect: Rect2):
+	for actor in all_actors:
+		var rect_actor = actor.collision_shape.shape.get_rect() as Rect2
+		if rect_actor.intersects(rect):
+			
+	pass
+
+
+func update_selection_rect(curr_pos: Vector2):
+	var view_to_world = get_canvas_transform().affine_inverse()
+	
+	var curr_pos_world = view_to_world * curr_pos
+	var start_pos_world = view_to_world * start_selection
+	
+	var max_x = max(curr_pos_world.x, start_pos_world.x)
+	var max_y = max(curr_pos_world.y, start_pos_world.y)
+	var min_x = min(curr_pos_world.x, start_pos_world.x)
+	var min_y = min(curr_pos_world.y, start_pos_world.y)
+	
+	var rect_pos = Vector2(min_x, min_y)
+	
+	# Sprite
+	np_selection.position = rect_pos
+	np_selection.size = Vector2(max_x - min_x, max_y - min_y)
+	
+	# Rectangle
+	rect_selection.position = rect_pos
+	rect_selection.size = np_selection.size
+	

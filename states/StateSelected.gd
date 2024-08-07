@@ -5,13 +5,18 @@ var selected_actors = []
 
 
 func enter_state(param_object: Variant):
-	# Init selection array
-	if param_object is Array:
-		selected_actors = param_object
+	# Shift pressed
+	if Input.is_action_pressed("shift"):
+		for new_actor in param_object:
+			if not selected_actors.has(new_actor):
+				selected_actors.append(new_actor)
+	# Shift not pressed
 	else:
-		selected_actors = []
-		selected_actors.append(param_object)
-		
+		# Deselect former selection
+		for actor in selected_actors:
+			actor.set_selected(false)
+			
+		selected_actors = param_object
 	# Set all actors in array to selected
 	for actor in selected_actors:
 		actor.set_selected(true)
@@ -33,17 +38,11 @@ func unhandled_input(event: InputEvent):
 	handle_camera_drag(event)
 	handle_camera_zoom(event)
 
-	## Left click
-	if event.is_action_pressed("click_left"):
-		event = event as InputEventMouseButton
+	handle_left_click(event)
+	handle_right_click(event)
+	handle_mouse_motion(event)
 
-		# Check for actor under click
-		var actor = main_scene.check_for_actor(event.global_position)
-		if actor != null:
-			main_scene.change_state("StateSelected", actor)
-			return
-			
-		# Click on 
-			
-			
-			
+
+
+
+

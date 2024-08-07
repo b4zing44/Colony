@@ -11,6 +11,7 @@ func init_astar():
 	var used_rect = get_used_rect()
 	astar = AStarGrid2D.new()
 	astar.region = used_rect
+	astar.cell_size = Vector2(16, 16)
 	astar.update()
 
 	# Set solid
@@ -23,3 +24,8 @@ func init_astar():
 			else:
 				astar.set_point_solid(cell, true)
 
+
+func get_point_path(start_cell: Vector2i, target_cell: Vector2i):
+	
+	return astar.get_point_path(start_cell, target_cell)
+	

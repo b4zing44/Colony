@@ -23,6 +23,13 @@ shape = SubResource("CircleShape2D_60qng")
 
 [node name="SpriteSelection" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
+texture = ExtResource("3_hhcou")
+
+[node name="SpritePreSelection" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.501961, 1, 1, 1)
 texture = ExtResource("3_hhcou")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -77,10 +77,8 @@ func handle_right_click(event: InputEvent):
 			var event_global_position = view_to_world * event.position
 			var cell_clicked = (main_scene.main_map as TileMap).local_to_map(event_global_position)
 			
-			var current_cell = 
+			var current_cell = (main_scene.main_map as TileMap).local_to_map(act)
 			
-			pass
-	pass
 
 func handle_mouse_motion(event: InputEvent):
 	if event is InputEventMouseMotion:
